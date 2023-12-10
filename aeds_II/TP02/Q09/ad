@@ -1,0 +1,30 @@
+public static  void heapsort(Jogador[] players, int contador){
+        for (int i = (contador - 1) / 2; i >= 0; i--) {
+            constroi(players, i, contador - 1);
+        }
+        for (int i = contador - 1; i >= 1; i--) {
+            Jogador aux = players[0];
+            players[0] = players[i];
+            players[i] = aux;
+            constroi(players, 0, i - 1);
+        }
+    }
+    public static void constroi(Jogador[] players, int i, int f){
+        Jogador aux = players[i];
+        int j = i * 2 + 1;
+        while (j <= f) {
+            if (j < f) {
+                if (players[j].getAltura() < players[j + 1].getAltura()) {
+                    j++;
+                }
+            }
+            if (aux.getAltura() < players[j].getAltura()) {
+                players[i] = players[j];
+                i = j;
+                j = i * 2 + 1;
+            } else {
+                j = f + 1;
+            }
+        }
+        players[i] = aux;
+    }
